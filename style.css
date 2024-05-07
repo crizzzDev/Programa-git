@@ -1,0 +1,559 @@
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display&family=Poppins&family=Varela&display=swap'); /*Tipografia original (remplazable)*/
+@import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap'); /*Tipografia importada para texto*/
+
+
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Poppins', sans-serif;
+}
+
+body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    background: linear-gradient(90deg, rgb(27, 38, 68) 0%, rgb(97, 216, 196) 100%); 
+    background-size: cover;
+    background-position: center;
+    margin: 0;
+}
+
+header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    padding: 10px 30px;
+    display: flex;
+    justify-content: space-between;
+    /*background-color: rgba(114, 238, 217, 0.2); Color de fondo con opacidad*/
+    /*box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);  Sombra sutil para el fondo*/
+    z-index: 99;
+    box-shadow: 0px -1px 12px rgba(0, 0, 0, 0.2);
+}
+
+.logo {
+    z-index: 999;
+    margin-right: auto;
+}
+
+.logo img {
+    width: 70PX; /* Ancho deseado de la imagen */
+    height: auto; /* Altura automática para mantener la proporción */
+    transition: width 0.3s ease; /* Transición suave de la propiedad width */
+    justify-content: space-between;
+}
+
+.header, .nav {
+    transition: top 0.3s ease; /* Transición suave en la propiedad top */
+}
+
+.nav {
+    display: flex;
+    justify-content: space-between;
+    z-index: 300;
+    width: 100%;
+}
+
+.nav-menu {
+    position: fixed;
+    top: 0px; /* Ajusta esta distancia desde la parte superior según sea necesario */
+    left: 0;
+    width: 100%;
+    padding: 20px 40px;
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    z-index: 99;
+    list-style: none;
+    margin: 3px;
+}
+
+.nav-menu li {
+    margin-right: 50px; /* Ajusta el margen entre los elementos <li> */
+}
+
+.nav a {
+    color: #fff;
+    text-decoration: none;
+    font-size: 1em;
+    position: relative;
+    transition: transform 0.3s ease, color 0.3s ease; /* Agrega transición suave a transform y font-size */
+}
+
+.nav-menu-link::after {
+    content: '';
+    position: absolute;
+    left: 0;
+    bottom: -6px;
+    width: 100%;
+    height: 3px;
+    background: linear-gradient(to right, #72EED9, #88F89E); /* Gradiente lineal de colores */
+    border-radius: 5px;
+    transform-origin: center;
+    transform: scaleX(0);
+    transition: transform 0.5s;
+}
+
+.nav a:hover::after {
+    transform-origin: center;
+    transform: scaleX(1);
+}
+
+.nav a:hover {
+        text-decoration: underline;
+        font-weight: 600;
+        color: transparent; /* Hace que el texto adopte el color del gradiente */
+        background-image: linear-gradient(to right, #72EED9, #88F89E); /* Gradiente lineal de colores */
+        -webkit-background-clip: text; /* Para navegadores WebKit (Chrome, Safari, etc.) */
+        background-clip: text;
+        -webkit-text-fill-color: transparent; /* Hace que el texto adopte el color del gradiente */
+    }
+
+.nav .btnLogin-popup {
+    width: 130px;
+    height: 50px;
+    background: transparent;
+    border: 2px solid #fff;
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 1em;
+    color: #fff;
+    font-weight: 500;
+    transition: 0.5s;
+}
+
+.nav .btnLogin-popup:hover {
+    background: linear-gradient(to right, #72EED9, #88F89E); /* Gradiente lineal de colores */
+    border: 2px solid #72EED9;
+    color: rgb(31,44,77);
+
+}
+
+.nav-btnToggle {
+    background-color: transparent;
+    color: #88F89E;
+    border: none;
+    cursor: pointer;
+    font-size: 45px;
+    display: none;
+    position: end;
+    z-index: 200;
+}
+
+@media (max-width: 840px) {
+    
+    header {
+        padding: 10px 30px; /*Ajusto el tamaño del header*/
+        background-color: #1B2644; /* Cambia el color de fondo de la barra de navegación */
+        height: 70px;
+    }
+     
+    .logo img {
+     width: 50px;
+    }
+
+    .header, .nav {
+        transition: none;
+    }
+
+    .nav-menu {
+        
+        flex-direction: column;
+        position: fixed; /* Fija la barra de navegación */
+        top: -300px;
+        width: 100%; /* Ancho del elemento*/
+        background-color: #1B2644; /* Cambia el color de fondo de la barra de navegación */
+         /* Alinea verticalmente los elementos*/
+        justify-content: flex-start;
+        z-index: 99; /* Asegura que la barra de navegación esté sobre otros elementos */
+        
+        transition: 0.3s;
+       
+        margin: 0;
+      
+        
+        
+        height: calc(40% - 50px); /*Dimensiona el menu para poder hacer scroll dadlo el caso de que el dispositivo sea demasiado pequeño*/
+        overflow-y: auto;
+    }
+
+    .nav-menu li {
+        margin-top: 30px; /* Espacio de cada boton entre si */
+        margin-right: 0;
+        
+        
+    }
+    .nav .btnLogin-popup {
+        margin: 0;
+    }
+
+    
+    .nav a::after {
+        display: none; /* Ocultar completamente el pseudo-elemento ::after */
+    }
+
+    .nav .btnLogin-popup:hover {
+        background: linear-gradient(to right, #72EED9, #88F89E); /* Gradiente lineal de colores */
+        border: 2px solid #72EED9;
+        color: rgb(31,44,77);
+    }
+
+    .nav-btnToggle {
+        display: inline-block;
+    } 
+
+    .nav-menu_visible {
+        top: 0%;
+        
+    }
+}
+
+.wrapper {
+    z-index: 999;
+    position: absolute;
+    margin-top: auto;
+    margin-left: auto;
+    width: 400px;
+    height: 420px;
+    background: transparent;
+    border: 2px solid rgba(255, 255, 255, 0.5);
+    border-radius: 20px;
+    backdrop-filter: blur(20px);
+    /*box-shadow: 0 0 10px rgba(154, 154, 154, 0.5);  pensado en no dejar este box*/ 
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+    transform: scale(0);
+    transition: transform 0.5s ease, height 0.2s ease;
+}
+
+.wrapper-back{
+    width: 100%;
+    background-color: #72EED9;
+}
+
+.wrapper.active-popup {
+    transform: scale(1); /*Escala del popup*/
+}
+
+.wrapper.active {
+    height: 470px; /* Dimension de la caja inicio de sesion y registro*/
+}
+
+.wrapper .form-box {
+    width: 100%;
+    padding: 40px;
+}
+
+.wrapper .form-box.login {
+    transition: transform 0.18s ease;
+    transform: translateX(0);
+}
+
+.wrapper.active .form-box.login {
+    transition: none;
+    transform: translateX(-400px);
+}
+
+.wrapper .form-box.register {
+    position: absolute;
+    transition: none;
+    transform: translateX(400px);
+}
+
+.wrapper.active .form-box.register {
+    transition: transform 0.18s ease;
+    transform: translateX(0);
+}
+
+.wrapper .icon-close {
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 45px;
+    height: 45px;
+    background: transparent;
+    font-size: 2em;
+    color: #fff;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-bottom-left-radius: 30px; /*define el borde del*/
+    cursor: pointer;
+    z-index: 1;
+}
+
+.form-box h2 { /*Titulos de los inputs*/
+    font-size: 2em;
+    color: #fff;
+    text-align: center;
+}
+
+.input-box {   /*Lineas del input*/
+    position: relative;
+    width: 100%;
+    height: 50px;
+    border-bottom: 2px solid #fff;
+    margin: 30px 0;
+}
+
+.input-box label {  /*Texto de titulo del input*/
+    position: absolute;
+    top: 50%;
+    left: 5px;
+    transform: translateY(-50%);
+    font-size: 1em;
+    color: #fff;
+    font-weight: 500;
+    pointer-events: none;
+    transition: 0.5s;
+}
+
+.input-box input:focus~label,
+.input-box input:valid~label {
+    top: -5%;
+}
+
+.input-box input {
+    width: 100%;
+    height: 100%;
+    background: transparent;
+    border: none;
+    outline: none;
+    font-size: 1em;
+    color: #fff;
+    font-weight: 600;
+    padding: 0 35px 0 5px;
+}
+
+.input-box .icon {
+    position: absolute;
+    right: 8px;
+    font-size: 1em;
+    color: #fff;
+    line-height: 57px;
+}
+
+.remember-forgot {
+    font-size: 1em;
+    color: #fff;
+    font-weight: 500;
+    margin: -15px 0 15px;
+    display: flex;
+    justify-content: space-between;
+}
+
+.remember-forgot label input {
+    accent-color: #fff;
+    margin-right: 3px;
+}
+
+.remember-forgot a {
+    color: #fff;
+    text-decoration: none;
+}
+
+.remember-forgot a:hover {
+    text-decoration: underline;
+    color: transparent; /* Hace que el texto adopte el color del gradiente */
+    background-image: linear-gradient(to right, #72EED9, #88F89E); /* Gradiente lineal de colores */
+    -webkit-background-clip: text; /* Para navegadores WebKit (Chrome, Safari, etc.) */
+    background-clip: text;
+    -webkit-text-fill-color: transparent; /* Hace que el texto adopte el color del gradiente */
+}
+
+.btn-wrapper {
+    width: 100%;
+    height: 45px;
+    background: #fff;
+    border: none;
+    outline: none;
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 1em;
+    color: rgb(31,44,77);
+    font-weight: 500;
+    position: z;
+}
+
+.btn-wrapper:hover {
+    box-shadow: 0 0 20px rgba(154, 154, 154, 0.5);
+    background: #fff;
+}
+
+.login-register {
+    font-size: 0.9em;
+    color: #fff;
+    text-align: center;
+    font-weight: 500;
+    margin: 25px 0 10px;
+}
+
+.login-register p a {
+    color: #fff;
+    text-decoration: none;
+    font-weight: 600;
+    transition: color 0.3s ease; /* Transición suave para el cambio de color */
+}
+
+.login-register p a:hover {
+    text-decoration: underline;
+    color: transparent; /* Hace que el texto adopte el color del gradiente */
+    background-image: linear-gradient(to right, #72EED9, #88F89E); /* Gradiente lineal de colores */
+    -webkit-background-clip: text; /* Para navegadores WebKit (Chrome, Safari, etc.) */
+    background-clip: text;
+    -webkit-text-fill-color: transparent; /* Hace que el texto adopte el color del gradiente */
+}
+
+.container {    /*Contenido del inicio*/
+    display: flex;
+    justify-content: center; /* Centrado horizontal */
+    align-items: center; /* Centrado vertical */
+    flex-direction: column;
+}
+
+.content-inicio {
+    margin-top: 150px;
+    display: flex;
+    justify-content: space-between; /* Distribuirá los elementos con espacio entre ellos */;
+    width: 100%;
+    
+}
+
+.content1-inicio {
+    color: #fff;
+    width: 50%; /* Utiliza el 50% del ancho del contenedor principal */
+    padding: 20px; /* Espacio de separación entre content1-inicio y content2-inicio */
+}
+
+.content1-inicio h1 {
+    font-family: 'Roboto', sans-serif;
+    font-size: 4em;
+    line-height: 1;
+    font-weight: 900;
+    margin-bottom: 20px;
+}
+
+.content1-inicio p {
+    font-family: 'Roboto', sans-serif;
+    font-weight: 100;
+    margin: 0%;
+}
+
+.btn.btn-primary {
+    margin-top: 10%;
+    width: 40%;
+    height: 10%;
+    background: linear-gradient(to right, #72EED9, #88F89E); /* Gradiente lineal de colores */
+    border: none;
+    color: white; /* Color del texto */
+    font-size: 17px;
+    text-align: center;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5); /* Sombra del texto */
+    transition: transform 0.3s ease-in-out; /* Transición suave para la transformación */
+}
+
+.btn.btn-primary:hover {
+    transform: scale(1.1); /* Escala del botón al hacer hover (aumenta un 10%) */
+}
+
+.content2-inicio {
+    width: 50%; /* Utiliza el 50% del ancho del contenedor principal */
+    display: flex;
+    align-items: center;
+    
+}
+
+.content2-inicio img {
+    width: 100%; /* La imagen ocupará todo el ancho del contenedor */
+    display: block; /* Elimina cualquier espacio adicional */
+    margin: 0 auto; /* Centra horizontalmente la imagen */
+}
+
+.content-middle {
+    display: flex; /* Usa Flexbox para alinear contenido */
+    flex-direction: column; /* Apila los elementos verticalmente */
+    justify-content: center; /* Centra verticalmente el contenido */
+    align-items: center; /* Centra horizontalmente el contenido */
+    text-align: center;
+    color: #fff;
+    margin-top: 10%;
+    height: 100vh; /* Ajusta la altura del contenedor al 100% del viewport */
+}
+
+.content-middle-title {
+    display: block; /* Ajusta automáticamente al ancho del contenido */
+    width: 50%;
+}
+
+.content-middle-title h2 {
+    font-family: 'Roboto', sans-serif;
+    font-size: 3em;
+    line-height: 1.2;
+    font-weight: 900;
+    margin-bottom: 20px;
+}
+
+.content-middle-blocks {
+    margin-top: 50px;
+    display: flex;
+    align-items: center;
+    width: 100%;
+}
+
+.content-middle-blocks h3 {
+    font-family: 'Roboto', sans-serif;
+    font-size: 1.5em;
+    line-height: 1.2;
+    font-weight: 900;
+    margin-bottom: 20px;
+}
+
+.content-middle-block-p p{
+    font-family: 'Roboto', sans-serif;
+    font-weight: 100;
+    width: 77%;
+    margin-left: 40px;
+}
+
+.carousel-title {
+    display: flex; /* Flexbox para alinear contenido */
+    flex-direction: column; /* Apila los elementos verticalmente */
+    justify-content: center; /* Centra verticalmente el contenido */
+    align-items: center; /* Centra horizontalmente el contenido */
+    text-align: center;
+    color: #fff;
+    margin: 0;
+}
+
+.carousel-title h2 {
+    font-family: 'Roboto', sans-serif;
+    font-size: 4em;
+    line-height: 1.2;
+    font-weight: 900;
+    margin-bottom: 20px;
+}
+
+.carousel-title p {
+    font-family: 'Roboto', sans-serif;
+    font-weight: 100;
+    font-size: 1.5em;
+    width: 70%;
+}
+
+#carouselAutoplaying {
+    width: 100%;
+    scale: 70%;
+    display: flex;
+    justify-content: center; /* Centrado horizontal */
+}
+
+.carousel-item img {
+    width: 100%;
+    border-radius: 2%;
+}
